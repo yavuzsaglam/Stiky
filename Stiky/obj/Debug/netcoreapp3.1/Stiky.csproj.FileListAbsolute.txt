@@ -1,0 +1,16 @@
+F:\Projects\Stiky\Stiky\bin\Debug\netcoreapp3.1\Stiky.exe
+F:\Projects\Stiky\Stiky\bin\Debug\netcoreapp3.1\Stiky.deps.json
+F:\Projects\Stiky\Stiky\bin\Debug\netcoreapp3.1\Stiky.runtimeconfig.json
+F:\Projects\Stiky\Stiky\bin\Debug\netcoreapp3.1\Stiky.runtimeconfig.dev.json
+F:\Projects\Stiky\Stiky\bin\Debug\netcoreapp3.1\Stiky.dll
+F:\Projects\Stiky\Stiky\bin\Debug\netcoreapp3.1\Stiky.pdb
+F:\Projects\Stiky\Stiky\obj\Debug\netcoreapp3.1\Stiky.csprojAssemblyReference.cache
+F:\Projects\Stiky\Stiky\obj\Debug\netcoreapp3.1\Stiky.Stiky.resources
+F:\Projects\Stiky\Stiky\obj\Debug\netcoreapp3.1\Stiky.csproj.GenerateResource.cache
+F:\Projects\Stiky\Stiky\obj\Debug\netcoreapp3.1\Stiky.AssemblyInfoInputs.cache
+F:\Projects\Stiky\Stiky\obj\Debug\netcoreapp3.1\Stiky.AssemblyInfo.cs
+F:\Projects\Stiky\Stiky\obj\Debug\netcoreapp3.1\Stiky.csproj.CoreCompileInputs.cache
+F:\Projects\Stiky\Stiky\obj\Debug\netcoreapp3.1\Stiky.dll
+F:\Projects\Stiky\Stiky\obj\Debug\netcoreapp3.1\Stiky.pdb
+F:\Projects\Stiky\Stiky\obj\Debug\netcoreapp3.1\Stiky.genruntimeconfig.cache
+F:\Projects\Stiky\Stiky\obj\Debug\netcoreapp3.1\Stiky.Properties.Resources.resources
