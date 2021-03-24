@@ -39,8 +39,12 @@ namespace Stiky
         private Button exitButton;
         private Button minimizeButton;
         private Button settingsButton;
+        private Button newPageButton;
         private Panel titleBarPanel;
         private Panel settingsPanel;
+        private Panel bottomBarPanel;
+        private Label settingsLabel;
+        private bool settingsPanelOpen = false;
         private const int TITLE_BAR_HEIGHT = 24;
         private const int TITLE_BAR_OFFSET = 16;
         private const int SETTINGS_FORM_WIDTH = 100;
@@ -87,15 +91,41 @@ namespace Stiky
 
             /* Creating settings bar */
             settingsPanel = new Panel();
-            settingsPanel.Width = SETTINGS_FORM_WIDTH;
+            settingsPanel.Width = 0;
             settingsPanel.Height = this.Height;
             settingsPanel.Location = new Point(0, 0);
-            settingsPanel.BackColor = Color.LightGreen;
+            settingsPanel.BackColor = Color.Transparent;
             settingsPanel.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Bottom;
             settingsPanel.AutoSize = false;
             settingsPanel.Dock = DockStyle.None;
             settingsPanel.Visible = false;
             Controls.Add(settingsPanel);
+
+            /* Creating bottom bar */
+            bottomBarPanel = new Panel();
+            bottomBarPanel.Width = 0;
+            bottomBarPanel.Height = this.Height;
+            bottomBarPanel.Location = new Point(0, 0);
+            bottomBarPanel.BackColor = Color.LightPink;
+            bottomBarPanel.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Bottom;
+            bottomBarPanel.AutoSize = false;
+            bottomBarPanel.Dock = DockStyle.None;
+            bottomBarPanel.Visible = false;
+            Controls.Add(bottomBarPanel);
+
+            /* -Add controls to panel */
+            /* --Label */
+            settingsLabel = new Label();
+            settingsLabel.Width = SETTINGS_FORM_WIDTH;
+            settingsLabel.Height = TITLE_BAR_HEIGHT;
+            settingsLabel.Location = new Point(0, TITLE_BAR_HEIGHT + 1);
+            settingsLabel.AutoSize = false;
+            settingsLabel.TextAlign = ContentAlignment.MiddleCenter;
+            settingsLabel.BackColor = Color.LightGray;
+            settingsLabel.Text = Properties.Settings.Default.SettingsTitle;
+            settingsLabel.Name = "SettingsLabel";
+            settingsLabel.Font = new Font("Constantia", 14, FontStyle.Bold);
+            settingsPanel.Controls.Add(settingsLabel);
 
             /*  -Creating minmize Button */
             minimizeButton = new Button();
@@ -127,6 +157,22 @@ namespace Stiky
             exitButton.FlatAppearance.MouseDownBackColor = ControlPaint.Dark(this.BackColor);
             titleBarPanel.Controls.Add(exitButton);
 
+            /* -Create New Button */
+            newPageButton = new Button();
+            newPageButton.Dock = DockStyle.Right;
+            newPageButton.Width = TITLE_BAR_HEIGHT;
+            newPageButton.Height = TITLE_BAR_HEIGHT;
+            newPageButton.FlatStyle = FlatStyle.Flat;
+            newPageButton.FlatAppearance.BorderSize = 0;
+            newPageButton.BackColor = Color.Transparent;
+            newPageButton.Name = "NewButton";
+            newPageButton.BackgroundImage = Properties.Resources.newPage.ToBitmap();
+            newPageButton.BackgroundImageLayout = ImageLayout.Stretch;
+            newPageButton.Click += new EventHandler(newPageButton_Click);
+            newPageButton.FlatAppearance.MouseOverBackColor = ControlPaint.LightLight(this.BackColor);
+            newPageButton.FlatAppearance.MouseDownBackColor = ControlPaint.Dark(this.BackColor);
+            bottomBarPanel.Controls.Add(newPageButton);
+
             /* -Creating Settings Button */
             settingsButton = new Button();
             settingsButton.Dock = DockStyle.Left;
@@ -150,7 +196,40 @@ namespace Stiky
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
-            settingsPanel.Visible = true;
+            System.Timers.Timer settingsAnimTimer = new System.Timers.Timer();
+            settingsAnimTimer.Interval = 20;
+            settingsAnimTimer.AutoReset = true;
+            settingsAnimTimer.SynchronizingObject = settingsPanel;
+            
+            settingsAnimTimer.Elapsed += (sender, args) =>
+            {
+                if(settingsPanelOpen)
+                {
+                    if(settingsPanel.Width >= 10)
+                    {
+                        settingsPanel.Width -= 10;
+                    }
+                    else
+                    {
+                        settingsPanel.Width = 0;
+                        settingsPanel.Visible = false;
+                        settingsAnimTimer.Stop();
+                        settingsPanelOpen = false;
+                    }
+                }
+                else
+                {
+                    settingsPanel.Visible = true;
+                    settingsPanel.Width += 10;
+                    if (settingsPanel.Width >= SETTINGS_FORM_WIDTH)
+                    {
+                        settingsPanel.Width = SETTINGS_FORM_WIDTH;
+                        settingsAnimTimer.Stop();
+                        settingsPanelOpen = true;
+                    }
+                }
+            };
+            settingsAnimTimer.Start();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -161,6 +240,11 @@ namespace Stiky
         private void minimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void newPageButton_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void SaveSettings(object sender, EventArgs e)

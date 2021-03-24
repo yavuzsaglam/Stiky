@@ -103,6 +103,16 @@ namespace Stiky.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
+        internal static System.Drawing.Icon newPage {
+            get {
+                object obj = ResourceManager.GetObject("newPage", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
         internal static System.Drawing.Icon paste {
             get {
                 object obj = ResourceManager.GetObject("paste", resourceCulture);

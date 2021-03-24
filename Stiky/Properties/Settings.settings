@@ -14,5 +14,8 @@
     <Setting Name="MinWindowSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">150, 150</Value>
     </Setting>
+    <Setting Name="SettingsTitle" Type="System.String" Scope="User">
+      <Value Profile="(Default)">AYARLAR</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

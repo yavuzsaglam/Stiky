@@ -70,5 +70,17 @@ namespace Stiky.Properties {
                 this["MinWindowSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("AYARLAR")]
+        public string SettingsTitle {
+            get {
+                return ((string)(this["SettingsTitle"]));
+            }
+            set {
+                this["SettingsTitle"] = value;
+            }
+        }
     }
 }
